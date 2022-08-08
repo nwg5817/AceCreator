@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Text.RegularExpressions;
@@ -500,12 +501,16 @@ namespace AceCreator
 
             var current = 0;
             var counter = 0;
+            string weenieId = null;
+            if (int.TryParse(TextboxExportJsonWCID.Text, out var weenieIdInt))
+                weenieId = weenieIdInt.ToString("00000");
+
             foreach (var file in files)
             {
                 // Util.WriteToChat(file.Name);
                 ChoiceJSON.AddItem(file.Name, file);
 
-                if (TextboxExportJsonWCID.Text.Length > 0 && file.Name.Contains(TextboxExportJsonWCID.Text))
+                if (weenieId != null && file.Name.StartsWith(weenieId))
                     current = counter;
                 counter++;
             }
@@ -528,13 +533,17 @@ namespace AceCreator
 
             var current = 0;
             var counter = 0;
+            string weenieId = null;
+            if (int.TryParse(TextboxExportSQLWCID.Text, out var weenieIdInt))
+                weenieId = weenieIdInt.ToString("00000");
+
             foreach (var file in files)
             {
                 // Util.WriteToChat(file.Name);
                 ChoiceSQL.AddItem(file.Name, file.Name);
                 ChoiceChildList.AddItem(file.Name, file.Name);
 
-                if (TextboxExportSQLWCID.Text.Length > 0 && file.Name.Contains(TextboxExportSQLWCID.Text))
+                if (weenieId != null && file.Name.StartsWith(weenieId))
                     current = counter;
                 counter++;
             }
@@ -673,12 +682,16 @@ namespace AceCreator
 
             var current = 0;
             var counter = 0;
+            string landblockId = null;
+            if (int.TryParse(TextboxCurrentLandblock.Text, NumberStyles.HexNumber, null, out var landblockIdInt))
+                landblockId = landblockIdInt.ToString("X4");
+
             foreach (var file in files)
             {
                 // Util.WriteToChat(file.Name);
                 ChoiceLandblockJSON.AddItem(file.Name, file);
 
-                if (TextboxCurrentLandblock.Text.Length > 0 && file.Name.Contains(TextboxCurrentLandblock.Text))
+                if (landblockId != null && file.Name.StartsWith(landblockId))
                     current = counter;
                 counter++;
             }
@@ -702,12 +715,16 @@ namespace AceCreator
 
             var current = 0;
             var counter = 0;
+            string landblockId = null;
+            if (int.TryParse(TextboxCurrentLandblock.Text, NumberStyles.HexNumber, null, out var landblockIdInt))
+                landblockId = landblockIdInt.ToString("X4");
+
             foreach (var file in files)
             {
                 // Util.WriteToChat(file.Name);
                 ChoiceLandblockSQL.AddItem(file.Name, file);
 
-                if (TextboxCurrentLandblock.Text.Length > 0 && file.Name.Contains(TextboxCurrentLandblock.Text))
+                if (landblockId != null && file.Name.StartsWith(landblockId))
                     current = counter;
                 counter++;
             }
