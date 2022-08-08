@@ -502,7 +502,7 @@ namespace AceCreator
             var current = 0;
             var counter = 0;
             string weenieId = null;
-            if (int.TryParse(TextboxExportJsonWCID.Text, out var weenieIdInt))
+            if (TextboxExportJsonWCID != null &&  int.TryParse(TextboxExportJsonWCID.Text, out var weenieIdInt))
                 weenieId = weenieIdInt.ToString("00000");
 
             foreach (var file in files)
@@ -534,7 +534,7 @@ namespace AceCreator
             var current = 0;
             var counter = 0;
             string weenieId = null;
-            if (int.TryParse(TextboxExportSQLWCID.Text, out var weenieIdInt))
+            if (TextboxExportSQLWCID != null && int.TryParse(TextboxExportSQLWCID.Text, out var weenieIdInt))
                 weenieId = weenieIdInt.ToString("00000");
 
             foreach (var file in files)
@@ -683,7 +683,7 @@ namespace AceCreator
             var current = 0;
             var counter = 0;
             string landblockId = null;
-            if (int.TryParse(TextboxCurrentLandblock.Text, NumberStyles.HexNumber, null, out var landblockIdInt))
+            if (TextboxCurrentLandblock != null && int.TryParse(TextboxCurrentLandblock.Text, NumberStyles.HexNumber, null, out var landblockIdInt))
                 landblockId = landblockIdInt.ToString("X4");
 
             foreach (var file in files)
@@ -716,7 +716,7 @@ namespace AceCreator
             var current = 0;
             var counter = 0;
             string landblockId = null;
-            if (int.TryParse(TextboxCurrentLandblock.Text, NumberStyles.HexNumber, null, out var landblockIdInt))
+            if (TextboxCurrentLandblock != null && int.TryParse(TextboxCurrentLandblock.Text, NumberStyles.HexNumber, null, out var landblockIdInt))
                 landblockId = landblockIdInt.ToString("X4");
 
             foreach (var file in files)
