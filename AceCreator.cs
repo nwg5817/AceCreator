@@ -457,7 +457,17 @@ namespace AceCreator
                 {
                     JsonChoiceListLoadFiles();
                     SqlChoiceListLoadFiles();
-                    Util.WriteToChat("ListRefresh");
+
+                    LoadLandBlockJSONChoiceList();
+                    LoadLandBlockSQLChoiceList();
+
+                    //LoadQuestJSONChoiceList();
+                    //LoadQuestSQLChoiceList();
+
+                    //LoadRecipeJSONChoiceList();
+                    //LoadRecipeSQLChoiceList();
+
+                    //Util.WriteToChat("ListRefresh");
                 }
                 if (ChatMessages.LogMyLocations(e.Text, out string location))
                 {
@@ -482,22 +492,29 @@ namespace AceCreator
         private void JsonChoiceListLoadFiles()
         {
             ChoiceJSON = (HudCombo)view["ChoiceJSON"];
-            Util.WriteToChat(Globals.PathJSON);
+            //Util.WriteToChat(Globals.PathJSON);
             ChoiceJSON.Clear();
             string filespath = Globals.PathJSON;
             DirectoryInfo d = new DirectoryInfo(filespath);
             FileInfo[] files = d.GetFiles("*.json");
 
+            var current = 0;
+            var counter = 0;
             foreach (var file in files)
             {
                 // Util.WriteToChat(file.Name);
                 ChoiceJSON.AddItem(file.Name, file);
 
+                if (TextboxExportJsonWCID.Text.Length > 0 && file.Name.Contains(TextboxExportJsonWCID.Text))
+                    current = counter;
+                counter++;
             }
+
+            ChoiceJSON.Current = current;
         }
         private void SqlChoiceListLoadFiles()
         {
-            Util.WriteToChat(Globals.PathSQL);
+            //Util.WriteToChat(Globals.PathSQL);
             ChoiceSQL = (HudCombo)view["ChoiceSQL"];
             ChoiceChildList = (HudCombo)view["ChoiceChildList"];
 
@@ -509,13 +526,21 @@ namespace AceCreator
             DirectoryInfo d = new DirectoryInfo(filespath);
             FileInfo[] files = d.GetFiles("*.sql");
 
+            var current = 0;
+            var counter = 0;
             foreach (var file in files)
             {
                 // Util.WriteToChat(file.Name);
                 ChoiceSQL.AddItem(file.Name, file.Name);
                 ChoiceChildList.AddItem(file.Name, file.Name);
 
+                if (TextboxExportSQLWCID.Text.Length > 0 && file.Name.Contains(TextboxExportSQLWCID.Text))
+                    current = counter;
+                counter++;
             }
+
+            ChoiceSQL.Current = current;
+            ChoiceChildList.Current = current;
         }        
         private void LoadPathSettings()
         {
@@ -636,44 +661,58 @@ namespace AceCreator
 
             if (Globals.PathLandBlockJSON == "")
             {
-                Util.WriteToChat("JSON Landblock Path blank, Ignoring");
+                //Util.WriteToChat("JSON Landblock Path blank, Ignoring");
                 return;
             }
             ChoiceLandblockJSON = (HudCombo)view["ChoiceLandblockJSON"];
-            Util.WriteToChat(Globals.PathLandBlockJSON);
+            //Util.WriteToChat(Globals.PathLandBlockJSON);
             ChoiceLandblockJSON.Clear();
             string filespath = Globals.PathLandBlockJSON;
             DirectoryInfo d = new DirectoryInfo(filespath);
             FileInfo[] files = d.GetFiles("*.json");
 
+            var current = 0;
+            var counter = 0;
             foreach (var file in files)
             {
                 // Util.WriteToChat(file.Name);
                 ChoiceLandblockJSON.AddItem(file.Name, file);
 
+                if (TextboxCurrentLandblock.Text.Length > 0 && file.Name.Contains(TextboxCurrentLandblock.Text))
+                    current = counter;
+                counter++;
             }
+
+            ChoiceLandblockJSON.Current = current;
         }
         private void LoadLandBlockSQLChoiceList()
         {
 
             if (Globals.PathLandBlockSQL == "")
             {
-                Util.WriteToChat("SQL Landblock Path blank, Ignoring");
+                //Util.WriteToChat("SQL Landblock Path blank, Ignoring");
                 return;
             }
             ChoiceLandblockSQL = (HudCombo)view["ChoiceLandblockSQL"];
-            Util.WriteToChat(Globals.PathLandBlockSQL);
+            //Util.WriteToChat(Globals.PathLandBlockSQL);
             ChoiceLandblockSQL.Clear();
             string filespath = Globals.PathLandBlockSQL;
             DirectoryInfo d = new DirectoryInfo(filespath);
             FileInfo[] files = d.GetFiles("*.sql");
 
+            var current = 0;
+            var counter = 0;
             foreach (var file in files)
             {
                 // Util.WriteToChat(file.Name);
                 ChoiceLandblockSQL.AddItem(file.Name, file);
 
+                if (TextboxCurrentLandblock.Text.Length > 0 && file.Name.Contains(TextboxCurrentLandblock.Text))
+                    current = counter;
+                counter++;
             }
+
+            ChoiceLandblockSQL.Current = current;
         }
 
 
@@ -683,11 +722,11 @@ namespace AceCreator
 
             if (Globals.PathQuestJSON == "")
             {
-                Util.WriteToChat("JSON Quest Path blank, Ignoring");
+                //Util.WriteToChat("JSON Quest Path blank, Ignoring");
                 return;
             }
             ChoiceQuestJSON = (HudCombo)view["ChoiceQuestJSON"];
-            Util.WriteToChat(Globals.PathQuestJSON);
+            //Util.WriteToChat(Globals.PathQuestJSON);
             ChoiceQuestJSON.Clear();
             string filespath = Globals.PathQuestJSON;
             DirectoryInfo d = new DirectoryInfo(filespath);
@@ -705,11 +744,11 @@ namespace AceCreator
 
             if (Globals.PathQuestSQL == "")
             {
-                Util.WriteToChat("SQL Quest Path blank, Ignoring");
+                //Util.WriteToChat("SQL Quest Path blank, Ignoring");
                 return;
             }
             ChoiceQuestSQL = (HudCombo)view["ChoiceQuestSQL"];
-            Util.WriteToChat(Globals.PathQuestSQL);
+            //Util.WriteToChat(Globals.PathQuestSQL);
             ChoiceQuestSQL.Clear();
             string filespath = Globals.PathQuestSQL;
             DirectoryInfo d = new DirectoryInfo(filespath);
@@ -730,11 +769,11 @@ namespace AceCreator
 
             if (Globals.PathRecipeJSON == "")
             {
-                Util.WriteToChat("JSON Recipe Path blank, Ignoring");
+                //Util.WriteToChat("JSON Recipe Path blank, Ignoring");
                 return;
             }
             ChoiceRecipeJSON = (HudCombo)view["ChoiceRecipeJSON"];
-            Util.WriteToChat(Globals.PathRecipeJSON);
+            //Util.WriteToChat(Globals.PathRecipeJSON);
             ChoiceRecipeJSON.Clear();
             string filespath = Globals.PathRecipeJSON;
             DirectoryInfo d = new DirectoryInfo(filespath);
@@ -752,11 +791,11 @@ namespace AceCreator
 
             if (Globals.PathRecipeSQL == "")
             {
-                Util.WriteToChat("SQL Recipe Path blank, Ignoring");
+                //Util.WriteToChat("SQL Recipe Path blank, Ignoring");
                 return;
             }
             ChoiceRecipeSQL = (HudCombo)view["ChoiceRecipeSQL"];
-            Util.WriteToChat(Globals.PathRecipeSQL);
+            //Util.WriteToChat(Globals.PathRecipeSQL);
             ChoiceRecipeSQL.Clear();
             string filespath = Globals.PathRecipeSQL;
             DirectoryInfo d = new DirectoryInfo(filespath);
