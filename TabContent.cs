@@ -194,7 +194,6 @@ namespace AceCreator
 
                 Globals.Host.Actions.RequestId(Globals.Host.Actions.CurrentSelection);
                 CoreManager.Current.WorldFilter.ChangeObject += GetInfoWaitForItemUpdate;
-                // https://github.com/ACEmulator/ACE-PCAP-Exports/search?q=filename:
             }
             catch (Exception ex) { Util.LogError(ex); }
 

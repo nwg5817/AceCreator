@@ -264,7 +264,8 @@ namespace AceCreator
             ButtonExportLandblock.Hit += new EventHandler(ButtonExportLandblock_Click);
 
             TextboxFreeRotate = (HudTextBox)view["TextboxFreeRotate"];
-
+            CommandRefreshLBFilesList = view != null ? (HudButton)view["CommandRefreshLBFilesList"] : new HudButton();
+            CommandRefreshLBFilesList.Hit += new EventHandler(ButtonRefreshLBFilesList_Click);
 
 
             // ***** Quests/Recipes Tab *****
@@ -435,6 +436,7 @@ namespace AceCreator
                     LabelGetInfo.Text = e.Text;
                     TextboxExportJsonWCID.Text = wcid;
                     TextboxExportSQLWCID.Text = wcid;
+                    TextboxCreateWCID.Text = wcid;
                     TextboxParentGUID.Text = guid;
 
                     Globals.YotesWCID = wcid;
@@ -445,13 +447,13 @@ namespace AceCreator
                         System.Diagnostics.Process.Start("http://ac.yotesfan.com/weenies/items/" + wcid);
                         Globals.ButtonCommand = "NONE";
                     }
-                    if (Globals.ButtonCommand == "PCAPsLookup")
-                    {
-                        Util.WriteToChat("Opening Browser");
-                        Globals.ButtonCommand = "";
-                        System.Diagnostics.Process.Start("https://github.com/ACEmulator/ACE-PCAP-Exports/search?q=filename:" + wcid);
-                        Globals.ButtonCommand = "NONE";
-                    }
+                    //if (Globals.ButtonCommand == "PCAPsLookup")
+                    //{
+                    //    Util.WriteToChat("Opening Browser");
+                    //    Globals.ButtonCommand = "";
+                    //    System.Diagnostics.Process.Start("https://github.com/ACEmulator/ACE-PCAP-Exports/search?q=filename:" + wcid);
+                    //    Globals.ButtonCommand = "NONE";
+                    //}
                     // Util.WriteToChat(e.Text);
                 }
                 if (ChatMessages.FileExport(e.Text))

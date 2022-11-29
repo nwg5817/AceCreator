@@ -31,7 +31,7 @@ namespace AceCreator
         public HudButton ButtonExportLandblock { get; set; }
 
         public HudTextBox TextboxCurrentLandblock { get; set; }
-
+        public HudButton CommandRefreshLBFilesList { get; set; }
 
         // Button Events
         public void ButtonImportLandblockJSON_Click(object sender, EventArgs e)
@@ -116,6 +116,17 @@ namespace AceCreator
             catch (Exception ex) { Util.LogError(ex); }
             LoadLandBlockJSONChoiceList();
             LoadLandBlockSQLChoiceList();
+        }
+        public void ButtonRefreshLBFilesList_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Util.WriteToChat("Reloading FileLists");
+                RefreshAllLists();
+
+                // Util.WriteToChat("Text= " + ((HudStaticText)ChoiceSQL[ChoiceSQL.Current]).Text);
+            }
+            catch (Exception ex) { Util.LogError(ex); }
         }
     }
 }
